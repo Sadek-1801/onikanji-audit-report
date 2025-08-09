@@ -34,56 +34,60 @@ OUTPUT_REPORT = "audit_report.md"
 # ================================
 # PROMPT TEMPLATE
 # ================================
-AUDIT_PROMPT_TEMPLATE = """
-I need your help auditing a Japanese flashcard entry for my app OniKanji.
+# AUDIT_PROMPT_TEMPLATE = """
+# I need your help auditing a Japanese flashcard entry for my app OniKanji.
 
-Here is the flashcard data in key-value format:
-{row_data_str}
+# Here is the flashcard data in key-value format:
+# {row_data_str}
 
-### Audit Rules:
-1. **Accuracy & Naturalness**:
-   - Japanese: Flag stiff, textbook-like, or unnatural phrasing (e.g., 「あなたの国」 → 「そちら」).
-   - English: Fix awkward translations (e.g., "join a class" → "enroll"), remove filler words ("very", "really"), avoid passive voice.
-   - Reject non-standard compounds (e.g., 「民朝」).
+# ### Audit Rules:
+# 1. **Accuracy & Naturalness**:
+#    - Japanese: Flag stiff, textbook-like, or unnatural phrasing (e.g., 「あなたの国」 → 「そちら」).
+#    - English: Fix awkward translations (e.g., "join a class" → "enroll"), remove filler words ("very", "really"), avoid passive voice.
+#    - Reject non-standard compounds (e.g., 「民朝」).
 
-2. **Parenthetical Hygiene**:
-   - Remove ALL English notes in Japanese fields (e.g., 選ぶ (to choose)).
-   - Remove redundant clarifications in translations (e.g., "king (ruler)").
+# 2. **Parenthetical Hygiene**:
+#    - Remove ALL English notes in Japanese fields (e.g., 選ぶ (to choose)).
+#    - Remove redundant clarifications in translations (e.g., "king (ruler)").
 
-3. **Furigana Rules**:
-   - Sample sentences: All kanji must have furigana in format `漢字//よみ//`.
-   - Vocab words: Furigana should NOT be given on the target kanji being tested.
-   - Ensure syntax: `出//で//かける前//まえ//に`.
+# 3. **Furigana Rules**:
+#    - Sample sentences: All kanji must have furigana in format `漢字//よみ//`.
+#    - Vocab words: Furigana should NOT be given on the target kanji being tested.
+#    - Ensure syntax: `出//で//かける前//まえ//に`.
 
-4. **Multiple Choice**:
-   - Must have exactly 4 options.
-   - First option must be correct and match the vocab word reading.
-   - Distractors must be plausible.
+# 4. **Multiple Choice**:
+#    - Must have exactly 4 options.
+#    - First option must be correct and match the vocab word reading.
+#    - Distractors must be plausible.
 
-5. **Empty/None Fields**:
-   - If all readings are "None", skip the entry.
+# 5. **Empty/None Fields**:
+#    - If all readings are "None", skip the entry.
 
-6. **Consistency**:
-   - Column suffixes must match (e.g., kunyomiVocabWordOne ↔ kunyomiMultipleChoiceReadingOne).
-   - All fields should follow naming and formatting standards.
+# 6. **Consistency**:
+#    - Column suffixes must match (e.g., kunyomiVocabWordOne ↔ kunyomiMultipleChoiceReadingOne).
+#    - All fields should follow naming and formatting standards.
 
-### Output Format (Markdown):
-Return **only** the following structure:
+# ### Output Format (Markdown):
+# Return **only** the following structure:
 
-### Row {kanjiID}: {kanji}
-**Issues:**
-- [Issue 1]
-- [Issue 2]
+# ### Row {kanjiID}: {kanji}
+# **Issues:**
+# - [Issue 1]
+# - [Issue 2]
 
-**Fixes:**
-- [Fix suggestion 1]
-- [Fix suggestion 2]
+# **Fixes:**
+# - [Fix suggestion 1]
+# - [Fix suggestion 2]
 
-If no issues, return:
-### Row {kanjiID}: {kanji}
-**Issues:** None  
-**Fixes:** None
-"""
+# If no issues, return:
+# ### Row {kanjiID}: {kanji}
+# **Issues:** None  
+# **Fixes:** None
+# """
+
+# ================================
+# PROMPT TEMPLATE 2nd VERSION
+# ================================
 
 AUDIT_PROMPT_TEMPLATE = """
 ## **Flashcard Audit Prompt – Hybrid Final Version**
